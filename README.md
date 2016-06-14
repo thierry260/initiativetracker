@@ -26,7 +26,7 @@ window.onload = function(){
 ```
 
 ## Demo
-See bounce [demo](tschout.nl/initiative)
+See bounce [demo](http://tschout.nl/initiative)
 
 ## Motivation
 
