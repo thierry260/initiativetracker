@@ -26,7 +26,9 @@ window.onload = function(){
 ```
 
 ## Demo
-See bounce [demo](http://tschout.nl/initiative)
+See initiative tracker [demo](http://tschout.nl/initiative)
+
+NOTE: The "passive perception" part is hardcoded and not included in the library, but the code is free to use for your own campaign.
 
 ## Motivation
 
