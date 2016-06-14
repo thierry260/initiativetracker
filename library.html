@@ -119,14 +119,16 @@
 		window.onload = function(){
 			document.getElementById("btn_submit").addEventListener("click", myFunction);
 
+			var options = {
+				players: "players",
+				initiative: "initiative"
+			}
+
 			function myFunction() {
-			    _ts("#players").adding();
-			    _ts("#players").removing();
+			    _ts("#players", options).adding();
+			    _ts("#players", options).removing();
 			}
 		}
-
-		var players = "players";
-		var initiative = "initiative";
 	</script>
 </body>
 

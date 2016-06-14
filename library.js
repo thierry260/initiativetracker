@@ -4,11 +4,11 @@ var initiativepoint;
 // Anonymous function - entry point
 (function () {
     // _ts returns new Library object that hold our selector. Ex: _ts('.theme')
-    var _ts = function (params) {
-        return new library(params);
+    var _ts = function (params, options) {
+        return new library(params, options);
     };
      
-    var library = function (params) {
+    var library = function (params, options) {
         /* Get all elements in the document that matches a specified selector(s),
         as a static NodeList object */
         var selector = document.querySelectorAll(params),
@@ -21,14 +21,27 @@ var initiativepoint;
         for (; count < this.length; count++) {
             this[count] = selector[count];
         }
+
+        preferences = {
+        	players:'#players', 
+        	initiative:'#initiative'
+        };	
+
+        preferences = mergeObjects(preferences, options);
+
+	 	function mergeObjects(preferences, options) {
+			Object.keys(options).forEach(function(key) { preferences[key] = options[key]; });
+			return preferences;
+		}
+
          
         // Return as object
         return params;        
     };
- 
+
     // Assign our _ts object to global window object.
     if(!window._ts) {
-        window._ts = _ts;  
+        window._ts = _ts;
 
         // Extend the library object
 		_ts.fn = library.prototype = 
@@ -49,8 +62,8 @@ var initiativepoint;
 		    adding: function () {
 		    	document.getElementById("output").innerHTML = sessie.join(", ");
 
-				var chosen = document.getElementById(players).value;
-				var nummer = document.getElementById(initiative).value;
+				var chosen = document.getElementById(preferences.players).value;
+				var nummer = document.getElementById(preferences.initiative).value;
 				var n = nummer.length;
 				if (n <= 1){
 					nummer = "0" + nummer;
@@ -72,7 +85,7 @@ var initiativepoint;
 
 		    removing: function () {
 
-		    	$("#"+ players +" option:selected").remove();
+		    	$("#"+ preferences.players +" option:selected").remove();
 
 		        return this;
 		    },
